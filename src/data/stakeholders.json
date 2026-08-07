@@ -1,0 +1,320 @@
+{
+  "nodes": [
+    {
+      "id": "shell",
+      "name": "Shell plc",
+      "type": "company",
+      "country": "United Kingdom",
+      "influence": "critical",
+      "description": "British multinational oil and gas company, headquartered in London. One of the world's largest energy companies with operations in over 70 countries. Subject to the Milieudefensie court ruling requiring a 45% Scope 1–3 emissions cut by 2030."
+    },
+    {
+      "id": "gov_uk",
+      "name": "UK Government",
+      "type": "government",
+      "country": "United Kingdom",
+      "influence": "critical",
+      "description": "Sets national energy policy, taxation regimes including windfall taxes on North Sea profits, and the timeline for the UK's offshore energy transition. The North Sea Transition Deal is a direct negotiated outcome between Shell and HM Government."
+    },
+    {
+      "id": "gov_nl",
+      "name": "Dutch Government",
+      "type": "government",
+      "country": "Netherlands",
+      "influence": "high",
+      "description": "Former home nation of Shell following its UK unification. Involved in ongoing legal and regulatory climate cases and holds historical pension fund alignment."
+    },
+    {
+      "id": "gov_usa",
+      "name": "US Department of Energy",
+      "type": "government",
+      "country": "United States",
+      "influence": "critical",
+      "description": "Oversees Gulf of Mexico leasing rights, LNG export terminal permits, and federal environmental approvals for Shell's significant US upstream and downstream portfolio."
+    },
+    {
+      "id": "gov_nigeria",
+      "name": "Federal Government of Nigeria",
+      "type": "government",
+      "country": "Nigeria",
+      "influence": "high",
+      "description": "Key stakeholder in Shell's complex onshore divestment from the Shell Petroleum Development Company (SPDC), facing community liabilities and regulatory approvals."
+    },
+    {
+      "id": "gov_qatar",
+      "name": "State of Qatar",
+      "type": "government",
+      "country": "Qatar",
+      "influence": "high",
+      "description": "Sovereign partner in the North Field LNG expansion, the world's largest gas project. The Qatari government's approval is essential for production-sharing terms."
+    },
+    {
+      "id": "gov_australia",
+      "name": "Australian Government (DISER)",
+      "type": "government",
+      "country": "Australia",
+      "influence": "medium",
+      "description": "Regulates the Prelude FLNG facility, Australia's largest offshore energy asset, and manages resource rent taxation on LNG exports."
+    },
+    {
+      "id": "reg_nstam",
+      "name": "North Sea Transition Authority",
+      "type": "regulator",
+      "country": "United Kingdom",
+      "influence": "critical",
+      "description": "UK offshore regulator overseeing exploration licences, decommissioning obligations, and carbon storage approvals in the Continental Shelf. Critical gatekeeper for Shell's UK business."
+    },
+    {
+      "id": "reg_eu",
+      "name": "European Commission",
+      "type": "regulator",
+      "country": "European Union",
+      "influence": "high",
+      "description": "Administers the EU Emissions Trading Scheme (EU ETS), Carbon Border Adjustment Mechanism (CBAM), and the Corporate Sustainability Reporting Directive (CSRD). Sets the price of carbon across Shell's European refining and trading."
+    },
+    {
+      "id": "reg_epa",
+      "name": "US EPA",
+      "type": "regulator",
+      "country": "United States",
+      "influence": "high",
+      "description": "Enforces methane emissions regulations and Clean Air Act compliance across Shell's US Gulf Coast refining and chemical operations. Increasing scrutiny under current EPA enforcement posture."
+    },
+    {
+      "id": "reg_cma",
+      "name": "UK Competition & Markets Authority",
+      "type": "regulator",
+      "country": "United Kingdom",
+      "influence": "medium",
+      "description": "Reviews merger and acquisition activity in the UK energy sector and investigates greenwashing claims related to Shell's 'net zero' marketing."
+    },
+    {
+      "id": "ngo_milieudefensie",
+      "name": "Milieudefensie",
+      "type": "ngo",
+      "country": "Netherlands",
+      "influence": "critical",
+      "description": "Friends of the Earth Netherlands. Won the landmark 2021 Hague District Court ruling against Shell, mandating a 45% Scope 1–3 emissions reduction by 2030. Appeal ongoing in 2026."
+    },
+    {
+      "id": "ngo_greenpeace",
+      "name": "Greenpeace International",
+      "type": "ngo",
+      "country": "Netherlands",
+      "influence": "high",
+      "description": "Mounts direct action protests at Shell AGMs, rigs, and petrol stations globally. Skilled at media amplification of divestment and 'stop drilling' campaigns."
+    },
+    {
+      "id": "ngo_clientearth",
+      "name": "ClientEarth",
+      "type": "ngo",
+      "country": "United Kingdom",
+      "influence": "high",
+      "description": "Environmental law charity that has filed director duties litigation against major fossil fuel company boards. Monitors Shell's energy transition plan for fiduciary compliance."
+    },
+    {
+      "id": "ngo_xr",
+      "name": "Extinction Rebellion",
+      "type": "ngo",
+      "country": "United Kingdom",
+      "influence": "medium",
+      "description": "Conducts disruptive civil disobedience at Shell HQ, forecourt blockades, and lobby events. Primarily a reputational and operational nuisance rather than a legal threat."
+    },
+    {
+      "id": "ngo_srp",
+      "name": "Share Action",
+      "type": "ngo",
+      "country": "United Kingdom",
+      "influence": "medium",
+      "description": "Shareholder activist group that coordinates institutional investor voting blocs to pass climate resolutions at Shell AGMs. Increasingly effective in major pension fund alignment."
+    },
+    {
+      "id": "fin_blackrock",
+      "name": "BlackRock",
+      "type": "financier",
+      "country": "United States",
+      "influence": "critical",
+      "description": "World's largest asset manager and top-three Shell shareholder. Has shifted from aggressive ESG activism to a more pragmatic 'energy transition realism' stance, broadly supportive of Shell's revised strategy."
+    },
+    {
+      "id": "fin_vanguard",
+      "name": "Vanguard Group",
+      "type": "financier",
+      "country": "United States",
+      "influence": "critical",
+      "description": "Second-largest Shell shareholder. Passive investor with growing internal climate stewardship policy. Votes in line with company management on most resolutions but tracks net zero alignment."
+    },
+    {
+      "id": "fin_norges",
+      "name": "Norges Bank Investment Mgmt",
+      "type": "financier",
+      "country": "Norway",
+      "influence": "high",
+      "description": "Sovereign wealth fund of Norway; holds ~2.5% of Shell equity. Publishes detailed voting rationale and expects Paris-aligned capex allocation and methane reporting."
+    },
+    {
+      "id": "fin_pension",
+      "name": "ABP Pension Fund",
+      "type": "financier",
+      "country": "Netherlands",
+      "influence": "medium",
+      "description": "Major Dutch public pension fund that publicly divested from fossil fuel companies in 2021 citing inability to achieve Paris targets. Negative PR signal to other European funds."
+    },
+    {
+      "id": "comp_bp",
+      "name": "BP",
+      "type": "competitor",
+      "country": "United Kingdom",
+      "influence": "high",
+      "description": "Closest UK peer. Competes for North Sea acreage, talent, and institutional investor capital. Shares some policy positions with Shell through the Energy Transition Council."
+    },
+    {
+      "id": "comp_exxon",
+      "name": "ExxonMobil",
+      "type": "competitor",
+      "country": "United States",
+      "influence": "high",
+      "description": "Main US competitor in LNG and deep-water. Increasingly in direct competition for Qatari LNG offtake and US Gulf Coast refining throughput. Provides a benchmark for capital discipline."
+    },
+    {
+      "id": "comp_equinor",
+      "name": "Equinor",
+      "type": "partner",
+      "country": "Norway",
+      "influence": "high",
+      "description": "Close partner in North Sea wind (Dogger Bank) and carbon capture projects (Northern Lights). Competes in Norwegian acreage. Strategic hybrid: competitor and partner."
+    },
+    {
+      "id": "partner_qatarenergy",
+      "name": "QatarEnergy",
+      "type": "partner",
+      "country": "Qatar",
+      "influence": "critical",
+      "description": "State-owned enterprise and Shell's most strategically important JV partner in North Field LNG. Controls production volumes and price-setting terms for major LNG portfolios."
+    },
+    {
+      "id": "partner_sinopec",
+      "name": "Sinopec",
+      "type": "partner",
+      "country": "China",
+      "influence": "high",
+      "description": "Key customer and JV partner in Chinese lubricants and chemicals ventures. Relationship becoming increasingly complex in the context of US-China trade tensions."
+    },
+    {
+      "id": "sup_slb",
+      "name": "SLB (Schlumberger)",
+      "type": "supplier",
+      "country": "United States",
+      "influence": "high",
+      "description": "World's largest oilfield services company. Provides drilling, well evaluation, and digital twin technology critical to Shell's upstream production efficiency globally."
+    },
+    {
+      "id": "sup_baker",
+      "name": "Baker Hughes",
+      "type": "supplier",
+      "country": "United States",
+      "influence": "medium",
+      "description": "Provides LNG compression technology and subsea systems for Shell's deepwater projects. Critical for Prelude FLNG maintenance."
+    },
+    {
+      "id": "sup_saipem",
+      "name": "Saipem",
+      "type": "supplier",
+      "country": "Italy",
+      "influence": "medium",
+      "description": "Engineering and construction contractor for offshore pipeline projects. Key for decommissioning of legacy North Sea infrastructure."
+    },
+    {
+      "id": "union_unite",
+      "name": "Unite the Union",
+      "type": "union",
+      "country": "United Kingdom",
+      "influence": "medium",
+      "description": "Represents offshore and refinery workers across Shell's UK operations. Negotiates pay, safety standards, and increasingly raises concerns about just transition provisions for members."
+    },
+    {
+      "id": "union_nautilus",
+      "name": "Nautilus International",
+      "type": "union",
+      "country": "Netherlands",
+      "influence": "low",
+      "description": "Represents maritime officers on LNG tankers that transport Shell's cargo. Raises crewing standards and shift pattern concerns."
+    },
+    {
+      "id": "cust_aviation",
+      "name": "Global Aviation Sector",
+      "type": "customer",
+      "country": "Global",
+      "influence": "high",
+      "description": "Airlines (Lufthansa, IAG, Singapore Airlines) purchasing Shell's Sustainable Aviation Fuel (SAF) blends and traditional jet fuel. Growth customer driving Shell's biofuels investment thesis."
+    },
+    {
+      "id": "cust_shipping",
+      "name": "Maritime Shipping Industry",
+      "type": "customer",
+      "country": "Global",
+      "influence": "high",
+      "description": "Major shipping lines (Maersk, MSC, CMA CGM) purchasing marine LNG fuel and exploring green methanol. Shell's Marine division is market leader in marine energy sales."
+    },
+    {
+      "id": "cust_retail",
+      "name": "EV & Retail Motorists",
+      "type": "customer",
+      "country": "Global",
+      "influence": "medium",
+      "description": "Evolving consumer base using Shell Recharge EV network and petrol forecourts. Critical for brand relevance in the energy transition. Loyalty programmes underpin data collection."
+    },
+    {
+      "id": "ind_ceo",
+      "name": "Wael Sawan (CEO)",
+      "type": "individual",
+      "country": "United Kingdom",
+      "influence": "critical",
+      "description": "Shell's CEO since 2023. Architect of the 'more value, less emissions' strategy, pausing low-return green investments and re-pivoting to LNG and petrochemicals. Personal relationships with ministers and NOC heads are a key strategic asset."
+    },
+    {
+      "id": "ind_activist",
+      "name": "Follow This (Mark van Baal)",
+      "type": "individual",
+      "country": "Netherlands",
+      "influence": "medium",
+      "description": "Shareholder activist group that files climate resolutions at Shell's AGM annually. Secured 30% support from institutional investors for a 2023 Paris-aligned targets resolution."
+    }
+  ],
+  "links": [
+    { "source": "shell", "target": "gov_uk", "type": "regulatory", "strength": 9, "state": "deteriorating", "direction": "bilateral", "description": "Windfall Energy Profits Levy creating investment uncertainty. Shell has delayed some North Sea projects in response. Active lobbying to revise fiscal terms." },
+    { "source": "shell", "target": "gov_nl", "type": "regulatory", "strength": 7, "state": "deteriorating", "direction": "inbound", "description": "Relations strained after HQ relocation to London in 2022 and ongoing Milieudefensie appeal. Dutch government has been publicly unsympathetic." },
+    { "source": "shell", "target": "gov_usa", "type": "regulatory", "strength": 9, "state": "stable", "direction": "bilateral", "description": "Generally productive relationship with DOE. Gulf of Mexico lease sales ongoing. Monitoring impact of any renewed LNG export moratoria." },
+    { "source": "shell", "target": "gov_nigeria", "type": "regulatory", "strength": 8, "state": "deteriorating", "direction": "bilateral", "description": "Protracted SPDC onshore divestment process blocked by NUPRC regulatory approvals. Community litigation for oil spill liability unresolved." },
+    { "source": "shell", "target": "gov_qatar", "type": "collaborative", "strength": 8, "state": "improving", "direction": "bilateral", "description": "Strong alignment on North Field East expansion. Heads of agreement for additional LNG offtake signed in 2025. Wael Sawan personally visited Doha twice in 2025." },
+    { "source": "shell", "target": "gov_australia", "type": "regulatory", "strength": 6, "state": "stable", "direction": "inbound", "description": "Prelude FLNG operating at near-capacity. Resource rent tax applying. Government relations stable but some political pressure around domestic gas supply obligations." },
+    { "source": "shell", "target": "reg_nstam", "type": "regulatory", "strength": 8, "state": "stable", "direction": "bilateral", "description": "Constructive engagement on decommissioning plans. Shell a key participant in NSTA's Carbon Capture and Storage licensing rounds. Some tension on new exploration approvals." },
+    { "source": "shell", "target": "reg_eu", "type": "regulatory", "strength": 8, "state": "stable", "direction": "inbound", "description": "Compliance with EU ETS and CSRD ongoing. CBAM complicates refinery economics. Shell participates in EU refinery competitiveness taskforce." },
+    { "source": "shell", "target": "reg_epa", "type": "regulatory", "strength": 7, "state": "stable", "direction": "inbound", "description": "Methane reporting compliance active. No major enforcement actions. Some uncertainty around PFAS chemical liabilities at US chemical plants." },
+    { "source": "shell", "target": "reg_cma", "type": "regulatory", "strength": 5, "state": "stable", "direction": "inbound", "description": "CMA greenwashing review of 'Drive Carbon Neutral' forecourt claims ongoing. Low likelihood of enforcement action but reputation risk." },
+    { "source": "shell", "target": "ngo_milieudefensie", "type": "adversarial", "strength": 10, "state": "deteriorating", "direction": "inbound", "description": "The defining legal threat. Appeal against the 2021 Hague ruling heard in 2024; judgment pending. A ruling against Shell would require immediate restructuring of capex strategy." },
+    { "source": "shell", "target": "ngo_greenpeace", "type": "adversarial", "strength": 7, "state": "deteriorating", "direction": "inbound", "description": "Ongoing board protests, rig blockades, and media campaigns. Greenpeace's primary tactical goal is to delegitimise new fossil fuel licences." },
+    { "source": "shell", "target": "ngo_clientearth", "type": "adversarial", "strength": 7, "state": "deteriorating", "direction": "inbound", "description": "Director duties legal action threat. ClientEarth argues the Board is not adequately managing climate risk as a fiduciary duty." },
+    { "source": "shell", "target": "ngo_xr", "type": "adversarial", "strength": 4, "state": "stable", "direction": "inbound", "description": "Periodic direct-action protests. Limited operational impact. Primarily a reputational and media management challenge." },
+    { "source": "shell", "target": "ngo_srp", "type": "adversarial", "strength": 6, "state": "deteriorating", "direction": "inbound", "description": "Coordinating institutional shareholder climate votes at AGMs. Increasingly effective at securing >20% support for Paris-aligned resolutions." },
+    { "source": "shell", "target": "fin_blackrock", "type": "financial", "strength": 9, "state": "improving", "direction": "bilateral", "description": "BlackRock supportive of Shell's revised 'pragmatic' energy transition strategy. Voted against Milieudefensie-aligned shareholder resolutions in 2025." },
+    { "source": "shell", "target": "fin_vanguard", "type": "financial", "strength": 9, "state": "stable", "direction": "inbound", "description": "Stable passive investment. Vanguard stewardship team engaged on methane disclosures and board diversity. Generally votes with management." },
+    { "source": "shell", "target": "fin_norges", "type": "financial", "strength": 7, "state": "stable", "direction": "inbound", "description": "NBIM expects detailed Paris-alignment transition plan. Has voted against management on some climate resolutions but remains a long-term holder." },
+    { "source": "shell", "target": "fin_pension", "type": "financial", "strength": 4, "state": "deteriorating", "direction": "inbound", "description": "ABP completed divestment in 2021, a high-profile signal of European pension flight from fossil fuels. Ongoing reputational drag." },
+    { "source": "shell", "target": "comp_bp", "type": "collaborative", "strength": 5, "state": "stable", "direction": "bilateral", "description": "Industry coordination on NSTA regulatory submissions and some joint North Sea blocks. Fierce competition for retail customers and institutional capital." },
+    { "source": "shell", "target": "comp_exxon", "type": "collaborative", "strength": 4, "state": "stable", "direction": "bilateral", "description": "Competitors in LNG, deep-water, and chemicals. Occasional alignment on US regulatory lobbying positions. Provide investor benchmarking comparison." },
+    { "source": "shell", "target": "comp_equinor", "type": "collaborative", "strength": 8, "state": "improving", "direction": "bilateral", "description": "Deep partnership in North Sea offshore wind (Dogger Bank C) and Northern Lights CCS. Also competitors in Norwegian acreage auctions." },
+    { "source": "shell", "target": "partner_qatarenergy", "type": "collaborative", "strength": 10, "state": "improving", "direction": "bilateral", "description": "The most strategically important single relationship. Shell holds minority interest in multiple North Field LNG trains; QatarEnergy controls offtake terms and pricing." },
+    { "source": "shell", "target": "partner_sinopec", "type": "collaborative", "strength": 7, "state": "stable", "direction": "bilateral", "description": "JV in Chinese retail lubricants (Shell Lubricants China). Complex by geopolitical US-China tensions. Sinopec is also a major LNG offtake customer from Shell Trading." },
+    { "source": "shell", "target": "sup_slb", "type": "operational", "strength": 8, "state": "stable", "direction": "outbound", "description": "Long-term master services agreement. SLB's digital twin platform is integrated into Shell's upstream operations. Supply chain resilience a key dependency." },
+    { "source": "shell", "target": "sup_baker", "type": "operational", "strength": 6, "state": "stable", "direction": "outbound", "description": "Critical for LNG compression reliability on Prelude FLNG. Protracted maintenance cycle post-2020 shutdown led to reliability review." },
+    { "source": "shell", "target": "sup_saipem", "type": "operational", "strength": 5, "state": "stable", "direction": "outbound", "description": "Contracted for North Sea pipeline decommissioning. Some cost overruns in 2024 on Brent Spar Delta platform works." },
+    { "source": "shell", "target": "union_unite", "type": "adversarial", "strength": 6, "state": "stable", "direction": "bilateral", "description": "Periodic industrial disputes over offshore pay benchmarking. Unite has raised concerns about contractor displacement in Shell's North Sea workforce reduction." },
+    { "source": "shell", "target": "union_nautilus", "type": "collaborative", "strength": 3, "state": "stable", "direction": "bilateral", "description": "Routine collective bargaining for maritime crew. No significant disputes. LNG fleet expansion has increased union membership relevance." },
+    { "source": "shell", "target": "cust_aviation", "type": "collaborative", "strength": 8, "state": "improving", "direction": "outbound", "description": "Shell Aviation is the world's largest supplier of aviation fuel. SAF (Sustainable Aviation Fuel) offtake agreements growing with major airlines. Critical growth vector." },
+    { "source": "shell", "target": "cust_shipping", "type": "collaborative", "strength": 8, "state": "improving", "direction": "outbound", "description": "Shell Marine is the market leader in marine fuels. LNG bunkering network expanding. Maersk and MSC signed multi-year LNG marine supply agreements in 2024." },
+    { "source": "shell", "target": "cust_retail", "type": "collaborative", "strength": 6, "state": "improving", "direction": "outbound", "description": "Shell Recharge network now at 70,000 charge points globally. Retail brand loyalty programme critical for data collection and cross-selling lubricants." },
+    { "source": "shell", "target": "ind_ceo", "type": "operational", "strength": 10, "state": "stable", "direction": "bilateral", "description": "Wael Sawan defines corporate strategy. His personal conviction on LNG as a transition fuel underpins the capital allocation model. Board relations stable." },
+    { "source": "shell", "target": "ind_activist", "type": "adversarial", "strength": 5, "state": "deteriorating", "direction": "inbound", "description": "Follow This filed a 2026 AGM resolution demanding Paris-aligned absolute emissions targets. Garnered 28% shareholder support, a record high, putting board under pressure." }
+  ]
+}
