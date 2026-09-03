@@ -1,72 +1,73 @@
-import { useState } from 'react';
-import ForceGraph from './components/ForceGraph';
-import Sidebar from './components/Sidebar';
-import Toolbar from './components/Toolbar';
-import stakeholdersData from './data/stakeholders.json';
-import type { NodeData, GraphData } from './types';
-import styles from './App.module.css';
+import React from 'react';
+import { BillingProvider, useBilling } from './context/BillingContext';
+import { Login } from './components/Auth/Login';
+import { Sidebar } from './components/Layout/Sidebar';
+import { Dashboard } from './components/Dashboard/Dashboard';
+import { NewInvoice } from './components/Invoice/NewInvoice';
+import { InvoiceHistory } from './components/Invoice/InvoiceHistory';
+import { PartyMaster } from './components/Masters/PartyMaster';
+import { ItemMaster } from './components/Masters/ItemMaster';
+import { CompanySettings } from './components/Settings/CompanySettings';
+import { InvoicePrintView } from './components/Invoice/InvoicePrintView';
 
-const data = stakeholdersData as GraphData;
+const MainAppContent: React.FC = () => {
+  const {
+    user,
+    activeView,
+    selectedInvoiceForPrint,
+    setSelectedInvoiceForPrint,
+    companyDetails,
+  } = useBilling();
 
-function App() {
-  const [selectedNode, setSelectedNode] = useState<NodeData | null>(null);
-  const [filterType, setFilterType] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  if (!user) {
+    return <Login />;
+  }
 
-  const handleNodeClick = (node: NodeData) => {
-    setSelectedNode(prev => prev?.id === node.id ? null : node);
+  const renderView = () => {
+    switch (activeView) {
+      case 'dashboard':
+        return <Dashboard />;
+      case 'new-invoice':
+        return <NewInvoice />;
+      case 'invoices':
+        return <InvoiceHistory />;
+      case 'parties':
+        return <PartyMaster />;
+      case 'items':
+        return <ItemMaster />;
+      case 'settings':
+        return <CompanySettings />;
+      default:
+        return <Dashboard />;
+    }
   };
 
   return (
-    <div className={styles.app}>
-      {/* Top Header */}
-      <header className={styles.header}>
-        <div className={styles.brand}>
-          <span className={styles.logo}>ApexSignal</span>
-          <span className={styles.headerDivider} />
-          <span className={styles.headerTitle}>Stakeholder Relationship Visualiser</span>
-        </div>
-        <div className={styles.clientTag}>
-          <span className={styles.clientDot} />
-          Shell plc
-        </div>
-      </header>
+    <div className="flex h-screen w-screen overflow-hidden bg-slate-100 font-sans text-slate-800">
+      {/* Sidebar Navigation */}
+      <Sidebar />
 
-      {/* Toolbar */}
-      <Toolbar
-        filterType={filterType}
-        searchQuery={searchQuery}
-        onFilterChange={setFilterType}
-        onSearchChange={setSearchQuery}
-        totalNodes={data.nodes.length}
-      />
-
-      {/* Main content */}
-      <main className={styles.main}>
-        <div className={styles.graphArea}>
-          <ForceGraph
-            data={data}
-            onNodeClick={handleNodeClick}
-            selectedNode={selectedNode}
-            filterType={filterType}
-            searchQuery={searchQuery}
-          />
-          {/* Tip overlay */}
-          <div className={styles.tipOverlay}>
-            <span>Scroll to zoom · Drag to pan · Click node for details</span>
-          </div>
-        </div>
-
-        <div className={`${styles.sidebarArea} ${selectedNode ? styles.sidebarVisible : ''}`}>
-          <Sidebar
-            node={selectedNode}
-            links={data.links}
-            onClose={() => setSelectedNode(null)}
-          />
-        </div>
+      {/* Main Content Area */}
+      <main className="flex-1 overflow-y-auto bg-slate-50/50">
+        {renderView()}
       </main>
+
+      {/* Print / PDF Modal Overlay */}
+      {selectedInvoiceForPrint && (
+        <InvoicePrintView
+          invoice={selectedInvoiceForPrint}
+          companyDetails={companyDetails}
+          onClose={() => setSelectedInvoiceForPrint(null)}
+        />
+      )}
     </div>
   );
-}
+};
 
-export default App;
+export default function App() {
+  return (
+    <BillingProvider>
+      <MainAppContent />
+    </BillingProvider>
+  );
+}
