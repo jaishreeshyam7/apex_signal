@@ -40,19 +40,20 @@ interface BillingContextType {
   updateItem: (item: Item) => void;
   deleteItem: (id: string) => void;
 
-  // Settings
+  // Settings & Reset
   companyDetails: CompanyDetails;
   updateCompanyDetails: (details: CompanyDetails) => void;
+  resetAllData: () => void;
 }
 
 const BillingContext = createContext<BillingContextType | undefined>(undefined);
 
 const STORAGE_KEYS = {
-  USER: 'yp_billing_user',
-  INVOICES: 'yp_billing_invoices',
-  PARTIES: 'yp_billing_parties',
-  ITEMS: 'yp_billing_items',
-  SETTINGS: 'yp_billing_settings',
+  USER: 'yp_billing_user_v2',
+  INVOICES: 'yp_billing_invoices_v2',
+  PARTIES: 'yp_billing_parties_v2',
+  ITEMS: 'yp_billing_items_v2',
+  SETTINGS: 'yp_billing_settings_v2',
 };
 
 export const BillingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -66,7 +67,6 @@ export const BillingProvider: React.FC<{ children: React.ReactNode }> = ({ child
         console.error(e);
       }
     }
-    // Default logged in user matching screenshot
     return { email: 'ygbillion17@gmail.com', name: 'Yash Polymers Admin' };
   });
 
@@ -167,11 +167,11 @@ export const BillingProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   // Invoice Methods
   const getNextInvoiceNo = () => {
-    if (invoices.length === 0) return '340';
+    if (invoices.length === 0) return '101';
     const nums = invoices
       .map(inv => parseInt(inv.invoiceNo, 10))
       .filter(n => !isNaN(n));
-    if (nums.length === 0) return '340';
+    if (nums.length === 0) return '101';
     const max = Math.max(...nums);
     return String(max + 1);
   };
@@ -233,6 +233,18 @@ export const BillingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setCompanyDetails(details);
   };
 
+  // Clean wipe data helper
+  const resetAllData = () => {
+    setInvoices([]);
+    setParties([]);
+    setItems([]);
+    setCompanyDetails(initialCompanyDetails);
+    localStorage.removeItem(STORAGE_KEYS.INVOICES);
+    localStorage.removeItem(STORAGE_KEYS.PARTIES);
+    localStorage.removeItem(STORAGE_KEYS.ITEMS);
+    localStorage.removeItem(STORAGE_KEYS.SETTINGS);
+  };
+
   return (
     <BillingContext.Provider
       value={{
@@ -261,6 +273,7 @@ export const BillingProvider: React.FC<{ children: React.ReactNode }> = ({ child
         deleteItem,
         companyDetails,
         updateCompanyDetails,
+        resetAllData,
       }}
     >
       {children}

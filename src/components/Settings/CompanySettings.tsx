@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useBilling } from '../../context/BillingContext';
 import { Header } from '../Layout/Header';
-import { Building2, Landmark, Save, CheckCircle2 } from 'lucide-react';
+import { Building2, Landmark, Save, CheckCircle2, Trash2 } from 'lucide-react';
 
 export const CompanySettings: React.FC = () => {
-  const { companyDetails, updateCompanyDetails } = useBilling();
+  const { companyDetails, updateCompanyDetails, resetAllData } = useBilling();
 
   const [formData, setFormData] = useState({
     name: companyDetails.name,
@@ -51,6 +51,14 @@ export const CompanySettings: React.FC = () => {
     setTimeout(() => setSavedSuccess(false), 3000);
   };
 
+  const handleResetData = () => {
+    if (window.confirm('Are you sure you want to wipe all local data and start completely fresh?')) {
+      resetAllData();
+      alert('All local database records have been reset successfully!');
+      window.location.reload();
+    }
+  };
+
   return (
     <div className="p-6 max-w-5xl mx-auto w-full pb-20">
       <Header
@@ -81,6 +89,7 @@ export const CompanySettings: React.FC = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                placeholder="Yash Polymers"
                 required
               />
             </div>
@@ -93,7 +102,7 @@ export const CompanySettings: React.FC = () => {
                   value={formData.gstin}
                   onChange={(e) => setFormData({ ...formData, gstin: e.target.value.toUpperCase() })}
                   className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono font-semibold uppercase text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                  required
+                  placeholder="07AJEPG9306L1Z2"
                 />
               </div>
 
@@ -104,6 +113,7 @@ export const CompanySettings: React.FC = () => {
                   value={formData.pan}
                   onChange={(e) => setFormData({ ...formData, pan: e.target.value.toUpperCase() })}
                   className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono font-semibold uppercase text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="AJEPG9306L"
                 />
               </div>
             </div>
@@ -115,6 +125,7 @@ export const CompanySettings: React.FC = () => {
                 value={formData.address}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value.toUpperCase() })}
                 className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm uppercase text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                placeholder="PKT- E, SEC-4, BAWANA INDUSTRIAL AREA, BAWANA"
               />
             </div>
 
@@ -126,6 +137,7 @@ export const CompanySettings: React.FC = () => {
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="Delhi, India"
                 />
               </div>
 
@@ -136,6 +148,7 @@ export const CompanySettings: React.FC = () => {
                   value={formData.state}
                   onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                   className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="Delhi"
                 />
               </div>
             </div>
@@ -148,6 +161,7 @@ export const CompanySettings: React.FC = () => {
                   value={formData.stateCode}
                   onChange={(e) => setFormData({ ...formData, stateCode: e.target.value })}
                   className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="07"
                 />
               </div>
 
@@ -158,6 +172,7 @@ export const CompanySettings: React.FC = () => {
                   value={formData.pincode}
                   onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
                   className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="110039"
                 />
               </div>
             </div>
@@ -170,6 +185,7 @@ export const CompanySettings: React.FC = () => {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="9810293598"
                 />
               </div>
 
@@ -180,6 +196,7 @@ export const CompanySettings: React.FC = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="gargvikas144@gmail.com"
                 />
               </div>
             </div>
@@ -201,6 +218,7 @@ export const CompanySettings: React.FC = () => {
                 value={formData.bankAccountHolder}
                 onChange={(e) => setFormData({ ...formData, bankAccountHolder: e.target.value })}
                 className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                placeholder="Yash Polymers"
               />
             </div>
 
@@ -212,6 +230,7 @@ export const CompanySettings: React.FC = () => {
                   value={formData.bankName}
                   onChange={(e) => setFormData({ ...formData, bankName: e.target.value.toUpperCase() })}
                   className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm uppercase text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="STATE BANK OF INDIA"
                 />
               </div>
 
@@ -222,6 +241,7 @@ export const CompanySettings: React.FC = () => {
                   value={formData.bankAccountNumber}
                   onChange={(e) => setFormData({ ...formData, bankAccountNumber: e.target.value })}
                   className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="44204302050"
                 />
               </div>
             </div>
@@ -233,16 +253,26 @@ export const CompanySettings: React.FC = () => {
                 value={formData.bankBranchAndIfsc}
                 onChange={(e) => setFormData({ ...formData, bankBranchAndIfsc: e.target.value.toUpperCase() })}
                 className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm uppercase text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                placeholder="INDERLOK & SBIN0006102"
               />
             </div>
           </div>
         </div>
 
-        {/* Submit */}
-        <div className="flex justify-end">
+        {/* Submit & Reset Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <button
+            type="button"
+            onClick={handleResetData}
+            className="inline-flex items-center gap-2 px-4 py-2.5 border border-red-200 text-red-600 hover:bg-red-50 text-xs font-semibold rounded-xl transition"
+          >
+            <Trash2 className="w-4 h-4" />
+            <span>Reset All Local Data to Clean Slate</span>
+          </button>
+
           <button
             type="submit"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl shadow-lg shadow-blue-500/25 transition"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl shadow-lg shadow-blue-500/25 transition w-full sm:w-auto justify-center"
           >
             <Save className="w-4 h-4" />
             <span>Save Company Settings</span>

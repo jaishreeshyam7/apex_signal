@@ -9,6 +9,7 @@ import { PartyMaster } from './components/Masters/PartyMaster';
 import { ItemMaster } from './components/Masters/ItemMaster';
 import { CompanySettings } from './components/Settings/CompanySettings';
 import { InvoicePrintView } from './components/Invoice/InvoicePrintView';
+import { InvoiceAssistant } from './components/AI/InvoiceAssistant';
 
 const MainAppContent: React.FC = () => {
   const {
@@ -51,6 +52,9 @@ const MainAppContent: React.FC = () => {
       <main className="flex-1 overflow-y-auto bg-slate-50/50">
         {renderView()}
       </main>
+
+      {/* Bilingual AI Invoice Assistant / RAG Bot */}
+      <InvoiceAssistant />
 
       {/* Print / PDF Modal Overlay */}
       {selectedInvoiceForPrint && (

@@ -101,3 +101,11 @@ export interface User {
   email: string;
   name: string;
 }
+
+export interface ChatMessage {
+  id: string;
+  sender: 'user' | 'assistant';
+  text: string;
+  timestamp: string;
+  matchedInvoices?: Invoice[];
+}
