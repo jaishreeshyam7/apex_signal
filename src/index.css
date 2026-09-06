@@ -12,27 +12,59 @@
   }
 }
 
-/* Print Styles for Tax Invoice */
+/* Print Styles for Multi-Page Tax Invoice */
 @media print {
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
   body * {
     visibility: hidden;
   }
   
-  .invoice-print-sheet, .invoice-print-sheet * {
+  #invoice-printable-area,
+  #invoice-printable-area * {
     visibility: visible;
   }
   
-  .invoice-print-sheet {
+  #invoice-printable-area {
     position: absolute;
     left: 0;
     top: 0;
     width: 100% !important;
-    max-width: 100% !important;
     margin: 0 !important;
-    padding: 10mm 12mm !important;
+    padding: 0 !important;
+    background: #fff !important;
+    display: block !important;
+  }
+
+  .invoice-print-sheet {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 10mm 0 !important;
+    padding: 6mm 8mm !important;
     border: 1px solid #000 !important;
     box-shadow: none !important;
     background: #fff !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+  }
+
+  .invoice-page-break {
+    page-break-after: always !important;
+    break-after: page !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
   }
   
   .no-print {
@@ -41,6 +73,6 @@
 
   @page {
     size: A4 portrait;
-    margin: 8mm;
+    margin: 6mm 8mm;
   }
 }

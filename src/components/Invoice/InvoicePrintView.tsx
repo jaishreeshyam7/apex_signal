@@ -35,13 +35,9 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
   const totalQuantity = invoice.items.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
 
   // Sub-component for rendering a single invoice sheet
-  const renderInvoiceSheet = (copyLabel: string, isLast = false) => {
+  const renderInvoiceSheet = (copyLabel: string) => {
     return (
-      <div
-        className={`bg-white text-black p-6 sm:p-8 w-full max-w-[800px] border border-black text-[12px] leading-tight font-sans shadow-lg print:border-none print:shadow-none print:m-0 print:p-0 print:max-w-none print:w-full invoice-print-sheet ${
-          !isLast ? 'print:break-after-page mb-8 print:mb-0' : ''
-        }`}
-      >
+      <div className="bg-white text-black p-5 sm:p-7 w-full max-w-[800px] border border-black text-[11px] leading-tight font-sans shadow-lg print:border-none print:shadow-none print:m-0 print:p-0 print:max-w-none print:w-full invoice-print-sheet">
         {/* Main Header */}
         <div className="text-center border-b border-black pb-1 mb-0">
           <h1 className="text-base font-extrabold uppercase tracking-wide">TAX INVOICE</h1>
@@ -53,12 +49,12 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
           {/* Left Column: Seller */}
           <div className="border-r border-black p-2 flex flex-col justify-between">
             <div>
-              <h2 className="text-sm font-bold uppercase">{companyDetails.name}</h2>
-              <p className="text-[11px] mt-0.5">{companyDetails.address}</p>
-              <p className="text-[11px]">{companyDetails.city} {companyDetails.pincode}</p>
-              <p className="text-[11px] mt-1"><span className="font-semibold">GSTIN/UIN:</span> {companyDetails.gstin}</p>
-              <p className="text-[11px]"><span className="font-semibold">State Name:</span> {companyDetails.state}</p>
-              <p className="text-[11px]"><span className="font-semibold">E-Mail:</span> {companyDetails.email}</p>
+              <h2 className="text-sm font-bold uppercase">{companyDetails.name || 'Yash Polymers'}</h2>
+              <p className="text-[10.5px] mt-0.5">{companyDetails.address || 'Bawana Industrial Area'}</p>
+              <p className="text-[10.5px]">{companyDetails.city || 'Delhi'} {companyDetails.pincode}</p>
+              <p className="text-[10.5px] mt-1"><span className="font-semibold">GSTIN/UIN:</span> {companyDetails.gstin || '—'}</p>
+              <p className="text-[10.5px]"><span className="font-semibold">State Name:</span> {companyDetails.state || 'Delhi'}</p>
+              <p className="text-[10.5px]"><span className="font-semibold">E-Mail:</span> {companyDetails.email || '—'}</p>
             </div>
           </div>
 
@@ -66,26 +62,26 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
           <div className="divide-y divide-black">
             {/* Consignee */}
             <div className="p-2">
-              <span className="text-[10px] text-slate-600 font-semibold block uppercase">Consignee (Ship to)</span>
-              <p className="font-bold text-[11px] uppercase">{invoice.consignee?.name || invoice.buyer?.name}</p>
-              <p className="text-[11px]">{invoice.consignee?.address || invoice.buyer?.address}</p>
-              <p className="text-[11px]"><span className="font-semibold">GSTIN/UIN:</span> {invoice.consignee?.gstin || invoice.buyer?.gstin || '—'}</p>
-              <p className="text-[11px]"><span className="font-semibold">State Name:</span> {invoice.consignee?.state || invoice.buyer?.state || 'Delhi'}</p>
+              <span className="text-[9px] text-slate-600 font-semibold block uppercase">Consignee (Ship to)</span>
+              <p className="font-bold text-[11px] uppercase">{invoice.consignee?.name || invoice.buyer?.name || 'CASH SALE'}</p>
+              <p className="text-[10.5px]">{invoice.consignee?.address || invoice.buyer?.address || '—'}</p>
+              <p className="text-[10.5px]"><span className="font-semibold">GSTIN/UIN:</span> {invoice.consignee?.gstin || invoice.buyer?.gstin || '—'}</p>
+              <p className="text-[10.5px]"><span className="font-semibold">State Name:</span> {invoice.consignee?.state || invoice.buyer?.state || 'Delhi'}</p>
             </div>
 
             {/* Buyer */}
             <div className="p-2">
-              <span className="text-[10px] text-slate-600 font-semibold block uppercase">Buyer (Bill to)</span>
-              <p className="font-bold text-[11px] uppercase">{invoice.buyer?.name}</p>
-              <p className="text-[11px]">{invoice.buyer?.address}</p>
-              <p className="text-[11px]"><span className="font-semibold">GSTIN/UIN:</span> {invoice.buyer?.gstin || '—'}</p>
-              <p className="text-[11px]"><span className="font-semibold">State Name:</span> {invoice.buyer?.state || 'Delhi'}</p>
+              <span className="text-[9px] text-slate-600 font-semibold block uppercase">Buyer (Bill to)</span>
+              <p className="font-bold text-[11px] uppercase">{invoice.buyer?.name || 'CASH SALE'}</p>
+              <p className="text-[10.5px]">{invoice.buyer?.address || '—'}</p>
+              <p className="text-[10.5px]"><span className="font-semibold">GSTIN/UIN:</span> {invoice.buyer?.gstin || '—'}</p>
+              <p className="text-[10.5px]"><span className="font-semibold">State Name:</span> {invoice.buyer?.state || 'Delhi'}</p>
             </div>
           </div>
         </div>
 
         {/* Transport & Metadata Grid */}
-        <div className="grid grid-cols-4 border-b border-black text-[11px]">
+        <div className="grid grid-cols-4 border-b border-black text-[10.5px]">
           <div className="border-r border-b border-black p-1.5">
             <span className="text-[9px] text-slate-500 block font-medium">Invoice No.</span>
             <span className="font-bold">{invoice.invoiceNo}</span>
@@ -143,7 +139,7 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
           </div>
           <div className="border-r border-black p-1.5">
             <span className="text-[9px] text-slate-500 block font-medium">Motor Vehicle No.</span>
-            <span className="font-bold">{invoice.motorVehicleNo || 'DL01LAD1631'}</span>
+            <span className="font-bold">{invoice.motorVehicleNo || '—'}</span>
           </div>
           <div className="p-1.5">
             <span className="text-[9px] text-slate-500 block font-medium">Terms of Delivery</span>
@@ -152,7 +148,7 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
         </div>
 
         {/* Goods Items Table */}
-        <table className="w-full border-b border-black text-[11px] border-collapse">
+        <table className="w-full border-b border-black text-[10.5px] border-collapse">
           <thead>
             <tr className="border-b border-black font-bold text-center bg-slate-50">
               <th className="border-r border-black p-1 w-8">Sl No.</th>
@@ -184,7 +180,7 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
             {/* Tax Output Breakdown Rows */}
             {!invoice.isInterState ? (
               <>
-                <tr className="text-[11px]">
+                <tr className="text-[10.5px]">
                   <td className="border-r border-black p-1"></td>
                   <td className="border-r border-black p-1 font-medium italic">OUTPUT @ CGST ({invoice.cgstRate}%)</td>
                   <td className="border-r border-black p-1"></td>
@@ -194,7 +190,7 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
                   <td className="border-r border-black p-1"></td>
                   <td className="p-1 text-right font-medium">{formatCurrency(invoice.cgstTotal)}</td>
                 </tr>
-                <tr className="text-[11px]">
+                <tr className="text-[10.5px]">
                   <td className="border-r border-black p-1"></td>
                   <td className="border-r border-black p-1 font-medium italic">OUTPUT @ SGST ({invoice.sgstRate}%)</td>
                   <td className="border-r border-black p-1"></td>
@@ -206,7 +202,7 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
                 </tr>
               </>
             ) : (
-              <tr className="text-[11px]">
+              <tr className="text-[10.5px]">
                 <td className="border-r border-black p-1"></td>
                 <td className="border-r border-black p-1 font-medium italic">OUTPUT @ IGST ({invoice.igstRate}%)</td>
                 <td className="border-r border-black p-1"></td>
@@ -218,32 +214,30 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
               </tr>
             )}
 
-            {/* Blank spacer rows to match standard printed invoice height */}
-            {[...Array(Math.max(0, 4 - invoice.items.length))].map((_, i) => (
-              <tr key={`blank-${i}`} className="h-4">
-                <td className="border-r border-black p-1"></td>
-                <td className="border-r border-black p-1"></td>
-                <td className="border-r border-black p-1"></td>
-                <td className="border-r border-black p-1"></td>
-                <td className="border-r border-black p-1"></td>
-                <td className="border-r border-black p-1"></td>
-                <td className="border-r border-black p-1"></td>
-                <td className="p-1"></td>
-              </tr>
-            ))}
+            {/* Spacer row */}
+            <tr className="h-3">
+              <td className="border-r border-black p-1"></td>
+              <td className="border-r border-black p-1"></td>
+              <td className="border-r border-black p-1"></td>
+              <td className="border-r border-black p-1"></td>
+              <td className="border-r border-black p-1"></td>
+              <td className="border-r border-black p-1"></td>
+              <td className="border-r border-black p-1"></td>
+              <td className="p-1"></td>
+            </tr>
           </tbody>
           <tfoot>
             <tr className="border-t border-black font-bold bg-slate-50">
-              <td colSpan={4} className="border-r border-black p-1.5 text-right uppercase">Total</td>
-              <td className="border-r border-black p-1.5 text-right">{formatCurrency(totalQuantity)} KGS</td>
-              <td colSpan={2} className="border-r border-black p-1.5"></td>
-              <td className="p-1.5 text-right text-sm font-extrabold">{formatCurrency(invoice.grandTotal)}</td>
+              <td colSpan={4} className="border-r border-black p-1 text-right uppercase">Total</td>
+              <td className="border-r border-black p-1 text-right">{formatCurrency(totalQuantity)} KGS</td>
+              <td colSpan={2} className="border-r border-black p-1"></td>
+              <td className="p-1 text-right text-sm font-extrabold">{formatCurrency(invoice.grandTotal)}</td>
             </tr>
           </tfoot>
         </table>
 
         {/* Amount in words */}
-        <div className="border-b border-black p-1.5 flex justify-between items-center text-[11px]">
+        <div className="border-b border-black p-1 flex justify-between items-center text-[10.5px]">
           <div>
             <span className="font-semibold">Amount Chargeable (in words): </span>
             <span className="font-bold">{invoice.amountInWords}</span>
@@ -252,21 +246,21 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
         </div>
 
         {/* HSN/SAC Tax Summary Table */}
-        <div className="border-b border-black text-[10px]">
+        <div className="border-b border-black text-[9.5px]">
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b border-black bg-slate-50 font-bold text-center">
-                <th rowSpan={2} className="border-r border-black p-1">HSN/SAC</th>
-                <th rowSpan={2} className="border-r border-black p-1">Taxable Value</th>
+                <th rowSpan={2} className="border-r border-black p-0.5">HSN/SAC</th>
+                <th rowSpan={2} className="border-r border-black p-0.5">Taxable Value</th>
                 {!invoice.isInterState ? (
                   <>
-                    <th colSpan={2} className="border-r border-black p-1">CGST</th>
-                    <th colSpan={2} className="border-r border-black p-1">SGST</th>
+                    <th colSpan={2} className="border-r border-black p-0.5">CGST</th>
+                    <th colSpan={2} className="border-r border-black p-0.5">SGST</th>
                   </>
                 ) : (
-                  <th colSpan={2} className="border-r border-black p-1">IGST</th>
+                  <th colSpan={2} className="border-r border-black p-0.5">IGST</th>
                 )}
-                <th rowSpan={2} className="p-1">Total Tax Amount</th>
+                <th rowSpan={2} className="p-0.5">Total Tax Amount</th>
               </tr>
               <tr className="border-b border-black bg-slate-50 font-semibold text-center">
                 {!invoice.isInterState ? (
@@ -286,64 +280,64 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
             </thead>
             <tbody>
               <tr>
-                <td className="border-r border-black p-1 text-center font-medium">{invoice.items[0]?.hsn || '28365000'}</td>
-                <td className="border-r border-black p-1 text-right font-medium">{formatCurrency(invoice.subtotal)}</td>
+                <td className="border-r border-black p-0.5 text-center font-medium">{invoice.items[0]?.hsn || '28365000'}</td>
+                <td className="border-r border-black p-0.5 text-right font-medium">{formatCurrency(invoice.subtotal)}</td>
                 {!invoice.isInterState ? (
                   <>
-                    <td className="border-r border-black p-1 text-center">{invoice.cgstRate}%</td>
-                    <td className="border-r border-black p-1 text-right">{formatCurrency(invoice.cgstTotal)}</td>
-                    <td className="border-r border-black p-1 text-center">{invoice.sgstRate}%</td>
-                    <td className="border-r border-black p-1 text-right">{formatCurrency(invoice.sgstTotal)}</td>
+                    <td className="border-r border-black p-0.5 text-center">{invoice.cgstRate}%</td>
+                    <td className="border-r border-black p-0.5 text-right">{formatCurrency(invoice.cgstTotal)}</td>
+                    <td className="border-r border-black p-0.5 text-center">{invoice.sgstRate}%</td>
+                    <td className="border-r border-black p-0.5 text-right">{formatCurrency(invoice.sgstTotal)}</td>
                   </>
                 ) : (
                   <>
-                    <td className="border-r border-black p-1 text-center">{invoice.igstRate}%</td>
-                    <td className="border-r border-black p-1 text-right">{formatCurrency(invoice.igstTotal)}</td>
+                    <td className="border-r border-black p-0.5 text-center">{invoice.igstRate}%</td>
+                    <td className="border-r border-black p-0.5 text-right">{formatCurrency(invoice.igstTotal)}</td>
                   </>
                 )}
-                <td className="p-1 text-right font-bold">{formatCurrency(invoice.totalTax)}</td>
+                <td className="p-0.5 text-right font-bold">{formatCurrency(invoice.totalTax)}</td>
               </tr>
               <tr className="border-t border-black font-bold bg-slate-50">
-                <td className="border-r border-black p-1 text-center">Total</td>
-                <td className="border-r border-black p-1 text-right">{formatCurrency(invoice.subtotal)}</td>
+                <td className="border-r border-black p-0.5 text-center">Total</td>
+                <td className="border-r border-black p-0.5 text-right">{formatCurrency(invoice.subtotal)}</td>
                 {!invoice.isInterState ? (
                   <>
-                    <td className="border-r border-black p-1"></td>
-                    <td className="border-r border-black p-1 text-right">{formatCurrency(invoice.cgstTotal)}</td>
-                    <td className="border-r border-black p-1"></td>
-                    <td className="border-r border-black p-1 text-right">{formatCurrency(invoice.sgstTotal)}</td>
+                    <td className="border-r border-black p-0.5"></td>
+                    <td className="border-r border-black p-0.5 text-right">{formatCurrency(invoice.cgstTotal)}</td>
+                    <td className="border-r border-black p-0.5"></td>
+                    <td className="border-r border-black p-0.5 text-right">{formatCurrency(invoice.sgstTotal)}</td>
                   </>
                 ) : (
                   <>
-                    <td className="border-r border-black p-1"></td>
-                    <td className="border-r border-black p-1 text-right">{formatCurrency(invoice.igstTotal)}</td>
+                    <td className="border-r border-black p-0.5"></td>
+                    <td className="border-r border-black p-0.5 text-right">{formatCurrency(invoice.igstTotal)}</td>
                   </>
                 )}
-                <td className="p-1 text-right">{formatCurrency(invoice.totalTax)}</td>
+                <td className="p-0.5 text-right">{formatCurrency(invoice.totalTax)}</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         {/* Tax in words & PAN */}
-        <div className="border-b border-black p-1.5 text-[11px] flex justify-between">
+        <div className="border-b border-black p-1 text-[10.5px] flex justify-between">
           <div>
             <span className="font-semibold">Tax Amount (in words): </span>
             <span className="font-bold">{invoice.taxInWords}</span>
           </div>
         </div>
-        <div className="border-b border-black p-1.5 text-[11px]">
+        <div className="border-b border-black p-1 text-[10.5px]">
           <span className="font-semibold">Company's PAN: </span>
-          <span className="font-bold">{companyDetails.pan || 'AJEPG9306L'}</span>
+          <span className="font-bold">{companyDetails.pan || '—'}</span>
         </div>
 
         {/* Declarations & Bank Details 2-Column Section */}
-        <div className="grid grid-cols-2 border-b border-black text-[10px]">
+        <div className="grid grid-cols-2 border-b border-black text-[9.5px]">
           {/* Left: Declaration */}
-          <div className="border-r border-black p-2 flex flex-col justify-between">
+          <div className="border-r border-black p-1.5 flex flex-col justify-between">
             <div>
-              <span className="font-bold underline block mb-1">Declaration</span>
-              <ol className="list-decimal pl-3.5 space-y-0.5 text-slate-700">
+              <span className="font-bold underline block mb-0.5">Declaration</span>
+              <ol className="list-decimal pl-3 space-y-0.5 text-slate-700">
                 <li>Goods once sold shall not be taken back.</li>
                 <li>Payment shall be made within 15 Days from the bill date.</li>
                 <li>Late payment shall attract interest @ 18% P.A.</li>
@@ -353,26 +347,26 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
           </div>
 
           {/* Right: Bank Details */}
-          <div className="p-2 flex flex-col justify-between">
+          <div className="p-1.5 flex flex-col justify-between">
             <div>
-              <span className="font-bold underline block mb-1">Company's Bank Details</span>
-              <p><span className="font-semibold">A/c Holder's Name:</span> {companyDetails.bankDetails.accountHolder}</p>
-              <p><span className="font-semibold">Bank Name:</span> {companyDetails.bankDetails.bankName}</p>
-              <p><span className="font-semibold">A/c No.:</span> {companyDetails.bankDetails.accountNumber}</p>
-              <p><span className="font-semibold">Branch & IFS Code:</span> {companyDetails.bankDetails.branchAndIfsc}</p>
+              <span className="font-bold underline block mb-0.5">Company's Bank Details</span>
+              <p><span className="font-semibold">A/c Holder's Name:</span> {companyDetails.bankDetails.accountHolder || companyDetails.name}</p>
+              <p><span className="font-semibold">Bank Name:</span> {companyDetails.bankDetails.bankName || '—'}</p>
+              <p><span className="font-semibold">A/c No.:</span> {companyDetails.bankDetails.accountNumber || '—'}</p>
+              <p><span className="font-semibold">Branch & IFS Code:</span> {companyDetails.bankDetails.branchAndIfsc || '—'}</p>
             </div>
-            <div className="text-right pt-4">
-              <p className="font-bold text-[11px]">for {companyDetails.name}</p>
+            <div className="text-right pt-2">
+              <p className="font-bold text-[10px]">for {companyDetails.name || 'Yash Polymers'}</p>
             </div>
           </div>
         </div>
 
         {/* Jurisdiction & Signatory Footer */}
-        <div className="pt-2 text-[10px] flex flex-col justify-between">
-          <p className="text-center font-bold tracking-wider mb-6">SUBJECT TO DELHI, INDIA JURISDICTION</p>
+        <div className="pt-1.5 text-[9.5px] flex flex-col justify-between">
+          <p className="text-center font-bold tracking-wider mb-4">SUBJECT TO DELHI, INDIA JURISDICTION</p>
           <div className="flex justify-between items-end">
             <span className="italic text-slate-500">This is a Computer Generated Invoice</span>
-            <span className="font-bold text-center border-t border-black pt-1 px-4">Authorised Signatory</span>
+            <span className="font-bold text-center border-t border-black pt-0.5 px-4">Authorised Signatory</span>
           </div>
         </div>
       </div>
@@ -424,7 +418,7 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
               className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl shadow-md transition"
             >
               <Printer className="w-4 h-4" />
-              <span>Print / Save PDF</span>
+              <span>Print / Save PDF (2 Pages)</span>
             </button>
             <button
               onClick={onClose}
@@ -437,14 +431,17 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
 
         {/* Printable Invoice Container */}
         <div className="p-4 sm:p-8 overflow-y-auto bg-slate-200/60 flex-1 flex flex-col items-center">
-          {printMode === 'BOTH' ? (
-            <>
-              {renderInvoiceSheet('ORIGINAL FOR RECIPIENT', false)}
-              {renderInvoiceSheet('COPY FOR YASH POLYMERS', true)}
-            </>
-          ) : (
-            renderInvoiceSheet(printMode, true)
-          )}
+          <div id="invoice-printable-area" className="w-full flex flex-col items-center">
+            {printMode === 'BOTH' ? (
+              <>
+                {renderInvoiceSheet('ORIGINAL FOR RECIPIENT')}
+                <div className="invoice-page-break my-6 print:my-0"></div>
+                {renderInvoiceSheet('COPY FOR YASH POLYMERS')}
+              </>
+            ) : (
+              renderInvoiceSheet(printMode)
+            )}
+          </div>
         </div>
       </div>
     </div>
