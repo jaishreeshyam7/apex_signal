@@ -22,7 +22,13 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
   const [printMode, setPrintMode] = useState<PrintMode>('BOTH');
 
   const handlePrint = () => {
+    const originalTitle = document.title;
+    const cleanParty = (invoice.buyer?.name || 'Customer').replace(/[^a-zA-Z0-9]/g, '_');
+    document.title = `Invoice_${invoice.invoiceNo}_${cleanParty}`;
     window.print();
+    setTimeout(() => {
+      document.title = originalTitle;
+    }, 1000);
   };
 
   const formatCurrency = (num: number) => {
@@ -427,7 +433,7 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
               className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl shadow-md transition"
             >
               <Printer className="w-4 h-4" />
-              <span>Print / Save PDF</span>
+              <span>Print / Save PDF (2 Pages)</span>
             </button>
             <button
               onClick={onClose}
