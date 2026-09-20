@@ -34,6 +34,11 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
 
   const totalQuantity = invoice.items.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
 
+  // Calculate blank rows needed to maintain a fixed standard height matching Tally invoices
+  const totalItemRows = invoice.items.length + (invoice.isInterState ? 1 : 2);
+  const minTotalRows = 9;
+  const blankRowsCount = Math.max(2, minTotalRows - totalItemRows);
+
   // Sub-component for rendering a single invoice sheet
   const renderInvoiceSheet = (copyLabel: string) => {
     return (
@@ -147,91 +152,95 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
           </div>
         </div>
 
-        {/* Goods Items Table (Continuous Structured Grid) */}
+        {/* Goods Items Table (Continuous Grid matching Tally screenshot) */}
         <table className="w-full border-b border-black text-[10.5px] border-collapse">
           <thead>
-            <tr className="border-b border-black font-bold text-center bg-slate-50">
-              <th className="border-r border-black p-1.5 w-9">Sl No.</th>
+            <tr className="border-b border-black font-bold text-center">
+              <th className="border-r border-black p-1.5 w-10">Sl No.</th>
               <th className="border-r border-black p-1.5 text-left">Description of Goods</th>
               <th className="border-r border-black p-1.5 w-20">HSN/SAC</th>
               <th className="border-r border-black p-1.5 w-14">GST Rate</th>
-              <th className="border-r border-black p-1.5 w-24 text-right">Quantity</th>
+              <th className="border-r border-black p-1.5 w-28 text-right">Quantity</th>
               <th className="border-r border-black p-1.5 w-16 text-right">Rate</th>
               <th className="border-r border-black p-1.5 w-12 text-center">Per</th>
               <th className="p-1.5 w-24 text-right">Amount</th>
             </tr>
           </thead>
           <tbody>
+            {/* Item Rows */}
             {invoice.items.map((item, idx) => (
               <tr key={item.id || idx} className="align-top">
-                <td className="border-r border-black p-1.5 text-center font-medium">{idx + 1}</td>
-                <td className="border-r border-black p-1.5 font-bold uppercase">{item.description}</td>
-                <td className="border-r border-black p-1.5 text-center">{item.hsn}</td>
-                <td className="border-r border-black p-1.5 text-center">{item.gstRate}%</td>
-                <td className="border-r border-black p-1.5 text-right font-medium">{formatCurrency(item.quantity)} {item.unit}</td>
-                <td className="border-r border-black p-1.5 text-right">{formatCurrency(item.rate)}</td>
-                <td className="border-r border-black p-1.5 text-center uppercase">{item.unit}</td>
-                <td className="p-1.5 text-right font-semibold">{formatCurrency(item.amount)}</td>
+                <td className="border-r border-black px-1.5 py-1 text-center font-medium">{idx + 1}</td>
+                <td className="border-r border-black px-1.5 py-1 font-bold uppercase">{item.description}</td>
+                <td className="border-r border-black px-1.5 py-1 text-center">{item.hsn}</td>
+                <td className="border-r border-black px-1.5 py-1 text-center">{item.gstRate}%</td>
+                <td className="border-r border-black px-1.5 py-1 text-right font-medium">{formatCurrency(item.quantity)} {item.unit}</td>
+                <td className="border-r border-black px-1.5 py-1 text-right">{formatCurrency(item.rate)}</td>
+                <td className="border-r border-black px-1.5 py-1 text-center uppercase">{item.unit}</td>
+                <td className="px-1.5 py-1 text-right font-semibold">{formatCurrency(item.amount)}</td>
               </tr>
             ))}
 
             {/* Output Tax Breakdown Rows */}
             {!invoice.isInterState ? (
               <>
-                <tr>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="border-r border-black p-1.5 font-medium italic">OUTPUT @ CGST ({invoice.cgstRate}%)</td>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="p-1.5 text-right font-medium">{formatCurrency(invoice.cgstTotal)}</td>
+                <tr className="align-top">
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="border-r border-black px-1.5 py-0.5 font-bold uppercase">OUTPUT @ CGST ({invoice.cgstRate}%)</td>
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="px-1.5 py-0.5 text-right font-semibold">{formatCurrency(invoice.cgstTotal)}</td>
                 </tr>
-                <tr>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="border-r border-black p-1.5 font-medium italic">OUTPUT @ SGST ({invoice.sgstRate}%)</td>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="border-r border-black p-1.5"></td>
-                  <td className="p-1.5 text-right font-medium">{formatCurrency(invoice.sgstTotal)}</td>
+                <tr className="align-top">
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="border-r border-black px-1.5 py-0.5 font-bold uppercase">OUTPUT @ SGST ({invoice.sgstRate}%)</td>
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="border-r border-black px-1.5 py-0.5"></td>
+                  <td className="px-1.5 py-0.5 text-right font-semibold">{formatCurrency(invoice.sgstTotal)}</td>
                 </tr>
               </>
             ) : (
-              <tr>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5 font-medium italic">OUTPUT @ IGST ({invoice.igstRate}%)</td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="p-1.5 text-right font-medium">{formatCurrency(invoice.igstTotal)}</td>
+              <tr className="align-top">
+                <td className="border-r border-black px-1.5 py-0.5"></td>
+                <td className="border-r border-black px-1.5 py-0.5 font-bold uppercase">OUTPUT @ IGST</td>
+                <td className="border-r border-black px-1.5 py-0.5"></td>
+                <td className="border-r border-black px-1.5 py-0.5"></td>
+                <td className="border-r border-black px-1.5 py-0.5"></td>
+                <td className="border-r border-black px-1.5 py-0.5"></td>
+                <td className="border-r border-black px-1.5 py-0.5"></td>
+                <td className="px-1.5 py-0.5 text-right font-semibold">{formatCurrency(invoice.igstTotal)}</td>
               </tr>
             )}
 
-            {/* Structured Table Spacer Rows */}
-            {[...Array(Math.max(1, 3 - invoice.items.length))].map((_, i) => (
-              <tr key={`spacer-${i}`} className="h-6">
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="border-r border-black p-1.5"></td>
-                <td className="p-1.5"></td>
+            {/* Continuous Vertical Divider Lines for Empty Grid Rows */}
+            {[...Array(blankRowsCount)].map((_, i) => (
+              <tr key={`blank-grid-${i}`} className="h-5">
+                <td className="border-r border-black px-1.5"></td>
+                <td className="border-r border-black px-1.5"></td>
+                <td className="border-r border-black px-1.5"></td>
+                <td className="border-r border-black px-1.5"></td>
+                <td className="border-r border-black px-1.5"></td>
+                <td className="border-r border-black px-1.5"></td>
+                <td className="border-r border-black px-1.5"></td>
+                <td className="px-1.5"></td>
               </tr>
             ))}
           </tbody>
+
+          {/* Total Row */}
           <tfoot>
-            <tr className="border-t border-black font-bold bg-slate-50">
-              <td colSpan={4} className="border-r border-black p-1.5 text-right uppercase">Total</td>
-              <td className="border-r border-black p-1.5 text-right">{formatCurrency(totalQuantity)} KGS</td>
-              <td colSpan={2} className="border-r border-black p-1.5"></td>
-              <td className="p-1.5 text-right text-xs font-extrabold">{formatCurrency(invoice.grandTotal)}</td>
+            <tr className="border-t border-black font-bold">
+              <td colSpan={4} className="border-r border-black p-1 text-right uppercase">Total</td>
+              <td className="border-r border-black p-1 text-right">{formatCurrency(totalQuantity)} KGS</td>
+              <td className="border-r border-black p-1"></td>
+              <td className="border-r border-black p-1"></td>
+              <td className="p-1 text-right text-xs font-extrabold">{formatCurrency(invoice.grandTotal)}</td>
             </tr>
           </tfoot>
         </table>
@@ -258,7 +267,7 @@ export const InvoicePrintView: React.FC<InvoicePrintViewProps> = ({
                     <th colSpan={2} className="border-r border-black p-1">State Tax (SGST)</th>
                   </>
                 ) : (
-                  <th colSpan={2} className="border-r border-black p-1">Integrated Tax (IGST)</th>
+                  <th colSpan={2} className="border-r border-black p-1">IGST</th>
                 )}
                 <th rowSpan={2} className="p-1">Total Tax Amount</th>
               </tr>
