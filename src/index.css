@@ -12,14 +12,35 @@
   }
 }
 
-/* Print Styles for Multi-Page Tax Invoice */
+/* Screen Preview Styling */
+.invoice-print-sheet {
+  background-color: #ffffff;
+  color: #000000;
+  width: 100%;
+  max-width: 800px;
+  border: 1.5px solid #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 1.25;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+/* Strict A4 Print Styling */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 8mm 8mm 8mm;
+  }
+
   html, body {
     margin: 0 !important;
     padding: 0 !important;
     background: #fff !important;
+    width: 100% !important;
     height: auto !important;
     overflow: visible !important;
+    font-size: 10.5px !important;
   }
 
   body * {
@@ -43,19 +64,24 @@
   }
 
   .invoice-print-sheet {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
+    box-sizing: border-box !important;
     width: 100% !important;
     max-width: 100% !important;
-    margin: 0 0 10mm 0 !important;
-    padding: 6mm 8mm !important;
-    border: 1px solid #000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1.5px solid #000 !important;
     box-shadow: none !important;
     background: #fff !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
+    page-break-after: always !important;
+    break-after: page !important;
     display: block !important;
+  }
+
+  .invoice-print-sheet:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
   }
 
   .invoice-page-break {
@@ -69,10 +95,5 @@
   
   .no-print {
     display: none !important;
-  }
-
-  @page {
-    size: A4 portrait;
-    margin: 6mm 8mm;
   }
 }
